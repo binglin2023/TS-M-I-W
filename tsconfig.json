@@ -1,8 +1,39 @@
 {
-    "files": [],
-    "references": [
-      { "path": "./tsconfig.app.json" },
-      { "path": "./tsconfig.node.json" }
-    ]
-  }
-  
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowSyntheticDefaultImports": true,
+    "strictFunctionTypes": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": true,
+    "sourceMap": true,
+    "downlevelIteration": true,
+    "alwaysStrict": true,
+    "removeComments": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": false,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "noImplicitThis": true,
+    "strictNullChecks": false,
+    "experimentalDecorators": true,
+    "lib": ["es6", "dom", "esnext", "dom.iterable", "scripthost"],
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": false,
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@ts/*": ["./src/*"]
+    }
+  },
+  "include": ["src", "./components.d.ts","./src/customs.d.ts","./src/auto-imports.d.ts"],
+  "exclude": []
+}
