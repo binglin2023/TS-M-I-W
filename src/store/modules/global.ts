@@ -33,15 +33,15 @@ export const GlobalModule = defineStore({
     }
   },
   actions: {
-    async setPanelDetails(item: GlobalState["PANEL_DETAILS"] & { key: string | number }, isChangeKey = true) {
-      this.PANEL_SHOW = true;
-      if (isChangeKey) {
-        item.p_key = await guid();
-      } else {
-        item.p_key = item.p_component;
-      }
-      this.PANEL_DETAILS = item;
-    },
+    // async setPanelDetails(item: GlobalState["PANEL_DETAILS"] & { key: string | number }, isChangeKey = true) {
+    //   this.PANEL_SHOW = true;
+    //   if (isChangeKey) {
+    //     item.p_key = await guid();
+    //   } else {
+    //     item.p_key = item.p_component;
+    //   }
+    //   this.PANEL_DETAILS = item;
+    // },
     async mapCompleted() {
       return new Promise((resolve) => {
         if (this.MAP_LOAD) {

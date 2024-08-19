@@ -1,7 +1,7 @@
 import { MapConfig } from './config';
 import { center } from '@turf/turf';
 import { getBaseMapStyle } from './style';
-
+import { bbox } from './utils';
 
 let map:any,
     target:any,
@@ -43,8 +43,6 @@ export async function mapInit(config:MapConfig){
           unit: "metric"
         });
         map.addControl(scale, "bottom-right");
-
-
 
     });
 }

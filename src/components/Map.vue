@@ -13,8 +13,8 @@
   import { storeToRefs } from "pinia";
   
   const latLong = ref([0, 0]);
-  const { setPanelDetails } = GlobalModule();
-  const { MAP_TOOLS, MAP_LOAD, MAP_NAME, MAP } = storeToRefs(GlobalModule());
+  // const { setPanelDetails } = GlobalModule();
+  const { MAP_TOOLS, MAP_LOAD, MAP } = storeToRefs(GlobalModule());
   onMounted(async () => {
     MAP.value = await mapInit({
       animate: false,
@@ -27,33 +27,9 @@
       mousemoveCallback: (e: number[]) => {
         latLong.value = e;
       },
-      popupCallback: (layerName: any, code: any, coor: any) => {
-        console.log(layerName, code, coor);
-        try {
-          popups[layerName].api(code).then((res: { data: { [x: string]: any; center?: any; extent?: any } }) => {
-            const h = popupString(popups[layerName].columns, res.data, res.data[popups[layerName].title], null, () => {
-              setPanelDetails({
-                ...popups[layerName].panel,
-                p_title: res.data[popups[layerName].title],
-                ...res.data
-              });
-            });
-            showPopupInfo(h, coor || res.data.center);
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      }
+      popupCallback: () => {}
     });
     MAP_LOAD.value = true;
-    if (MAP_NAME.value === "HOME") {
-      const data = [...mapLayers.value.xz, ...mapLayers.value.gh];
-      data.forEach((layer) => {
-        if (layer.show) {
-          searchMapLayer(layer.label, true);
-        }
-      });
-    }
   });
   onBeforeUnmount(() => {
     MAP.value.remove();
