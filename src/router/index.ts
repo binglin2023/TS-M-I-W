@@ -11,7 +11,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory((import.meta as any).env.VITE_APP_ORIGIN),
   routes
 });
 

@@ -8,7 +8,7 @@ import { resolve } from 'path'
 import AutoImport from 'unplugin-auto-import/vite'
 // 引入配置需要自动导入的组件
 import Components from 'unplugin-vue-components/vite'
-import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { NaiveUiResolver } from "unplugin-vue-components/resolvers";
 
 // https://vitejs.dev/config/
 export default defineConfig(( mode :ConfigEnv): any => {
@@ -17,18 +17,22 @@ export default defineConfig(( mode :ConfigEnv): any => {
     base: env.VITE_APP_ORIGIN,
     plugins: [
       vue(),
-      usePluginImport(),
-      AutoImport({
-        // 配置需要自动导入的模块
-        imports: ['vue', 'vue-router'],
-        resolvers: [ElementPlusResolver()],
-        dts: 'src/types/auto-import.d.ts',
+      usePluginImport({
+        libraryName: "@icon-park/vue-next",
+        libraryDirectory: "es/icons",
+        camel2DashComponentName: false
       }),
+      // AutoImport({
+      //   // 配置需要自动导入的模块
+      //   imports: ['vue', 'vue-router'],
+      //   resolvers: [ElementPlusResolver()],
+      //   dts: 'src/types/auto-import.d.ts',
+      // }),
       // 配置需要自动导入的组件
       Components({
         // 导入存放的位置
         dts: false,
-        resolvers: [ElementPlusResolver()],
+        resolvers: [NaiveUiResolver()],
         directoryAsNamespace: true
       }),
     ],
@@ -37,6 +41,9 @@ export default defineConfig(( mode :ConfigEnv): any => {
       alias: {
         '@': resolve(__dirname, './src'),
       },
+    },
+    optimizeDeps: {
+      include: ["axios", "js-cookie", "vue"]
     },
        // 本地运行配置，及反向代理配置
        server: {

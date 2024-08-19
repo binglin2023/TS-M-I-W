@@ -9,9 +9,9 @@ export {}
 /* prettier-ignore */
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./../components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Map: typeof import('./src/components/map.vue')['default']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
   }
 }
